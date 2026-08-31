@@ -8,6 +8,7 @@ RUN apk update && apk add --no-cache make git openssl
 
 WORKDIR /src
 RUN git clone --depth 1 https://github.com/PasarGuard/node.git .
+ENV GOTOOLCHAIN=auto
 RUN go mod download
 
 RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} make NAME=main build
